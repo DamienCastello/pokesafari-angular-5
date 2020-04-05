@@ -1,0 +1,21 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li routerLinkActive="active">
+                <a routerLink="world">World</a>
+                <a routerLink="pokedex">Pokedex</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li routerLinkActive="active" *ngIf="!isAuth">
+                <a routerLink="auth/signup">Sign up</a>
+            </li>
+            <li routerLinkActive="active" *ngIf="!isAuth">
+                <a routerLink="auth/signin">Sign in</a>
+            </li>
+            <li>
+                <a (click)="onSignOut()" *ngIf="isAuth" style="cursor:pointer">Sign Out</a>
+            </li>
+        </ul>
+    </div>
+</nav>
