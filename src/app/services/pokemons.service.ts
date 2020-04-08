@@ -17,6 +17,11 @@ export class PokemonsService {
 
   constructor() { }
 
+  setPokemons(array) {
+    console.log(array.length , "setPokemons")
+    this.pokemons = array;
+  }
+
   emitPokemons() {
     this.pokemonsSubject.next(this.pokemons);
   }
@@ -31,6 +36,7 @@ export class PokemonsService {
 
   setList() {
     console.log("check pokemons before set", this.pokemons);
+    console.log(this.pokemons.length);
     firebase.database().ref('/pokemons').set(this.pokemons);
     console.log("check pokemons after set", this.pokemons);
   }
