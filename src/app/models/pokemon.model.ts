@@ -3,7 +3,7 @@ export class Pokemon {
         public height: number,
         public id: number,
         public name: string,
-        public sprites: object,
+        public sprites: any,
         public types: object[],
         public weight: number
         ){}

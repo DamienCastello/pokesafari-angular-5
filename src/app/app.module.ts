@@ -14,7 +14,8 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-
+import { MarkerService } from './services/marker.service';
+import { PopupService } from './services/popup.service';
 
 const appRoutes: Routes = [
   { path: 'auth/signup', component: SignupComponent },  
@@ -45,7 +46,9 @@ const appRoutes: Routes = [
   providers: [
     AuthService,
     PokemonsService,
-    AuthGuardService
+    AuthGuardService,
+    MarkerService,
+    PopupService
   ],
   bootstrap: [AppComponent]
 })

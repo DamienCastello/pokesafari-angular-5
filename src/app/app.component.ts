@@ -36,7 +36,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.pokemonsListUrl.map((pokemon: any) => {
       this.http.get(`${pokemon.url}`).subscribe(
          (response: Pokemon) => {
-           console.log("check pokemons in appComp before push():", this.pokemons);
            this.pokemons.push({
             height: response.height,
             id: response.id,
@@ -45,10 +44,7 @@ export class AppComponent implements OnInit, OnDestroy {
             types: response.types,
             weight: response.weight
           });
-          console.log("check pokemons in appComp after push():", this.pokemons);
-          console.log("check pokemonService before", this.PokemonsService.pokemons);
           this.PokemonsService.pokemons = this.pokemons;
-          console.log("check pokemonService after", this.PokemonsService.pokemons);
          }
        );
        

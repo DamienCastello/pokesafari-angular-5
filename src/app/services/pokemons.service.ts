@@ -8,17 +8,21 @@ import * as firebase from 'firebase';
 })
 export class PokemonsService {
 
+  pokemonsLocation: number[][] = [];
   pokemons: Pokemon[] = [];
   catchedPokemons: Pokemon[] = [];
   missedPokemons: Pokemon[] = [];
   pokemonsSubject = new Subject<Pokemon[]>();
   catchedPokemonsSubject = new Subject<Pokemon[]>();
   missedPokemonsSubject = new Subject<Pokemon[]>();
+  pokemonsLocationSubject = new Subject<number[][]>();
+
+
 
   constructor() { }
 
   setPokemons(array) {
-    console.log(array.length , "setPokemons")
+    console.log(array.length, "setPokemons")
     this.pokemons = array;
   }
 
@@ -32,6 +36,10 @@ export class PokemonsService {
 
   emitMissedPokemons() {
     this.missedPokemonsSubject.next(this.missedPokemons)
+  }
+
+  emitPokemonsLocation() {
+    this.pokemonsLocationSubject.next(this.pokemonsLocation)
   }
 
   setList() {
@@ -89,13 +97,37 @@ export class PokemonsService {
     this.emitPokemons();
   }
 
-  restart(){
+  restart() {
     this.catchedPokemons = [];
     this.missedPokemons = [];
     this.catchPokemon();
     this.missPokemon();
     this.emitCatchedPokemons();
     this.emitMissedPokemons();
+  }
+
+  generatePokemonsLocation() {
+    for (let i = 0; i < 151; i++) {
+      let randomLong = Math.random() < 0.5 ? -1 : 1;
+      let randomLat = Math.random() < 0.5 ? -1 : 1;
+      this.pokemonsLocation.push(
+        //Generate locations randomly around of Montpellier
+        [
+          43.6 + (Math.random() / 10) * randomLat,
+          3.8833 + (Math.random() / 10) * randomLong
+        ]
+      )
+    }
+    this.emitPokemonsLocation();
+  }
+
+  launchPokeball() {
+    let random = Math.random();
+    if (random < 0.50) {
+      alert("Yes ! I got him !");
+    } else {
+      alert("Oh damn ! He escaped !");
+    }
   }
 
 }
