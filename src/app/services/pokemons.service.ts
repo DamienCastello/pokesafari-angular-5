@@ -10,11 +10,11 @@ export class PokemonsService {
 
   pokemonsLocation: number[][] = [];
   pokemons: Pokemon[] = [];
-  catchedPokemons: Pokemon[] = [];
-  missedPokemons: Pokemon[] = [];
+  catchedPokemons: number[] = [];
+  missedPokemons: number[] = [];
   pokemonsSubject = new Subject<Pokemon[]>();
-  catchedPokemonsSubject = new Subject<Pokemon[]>();
-  missedPokemonsSubject = new Subject<Pokemon[]>();
+  catchedPokemonsSubject = new Subject<number[]>();
+  missedPokemonsSubject = new Subject<number[]>();
   pokemonsLocationSubject = new Subject<number[][]>();
 
 
@@ -80,15 +80,15 @@ export class PokemonsService {
     );
   }
 
-  createCatchedPokemon(newCatched: Pokemon) {
+  createCatchedPokemon(newCatched: number) {
     this.catchedPokemons.push(newCatched);
     this.catchPokemon();
     this.emitCatchedPokemons();
   }
 
-  createMissedPokemon(newMissed: Pokemon) {
+  createMissedPokemon(newMissed: number) {
     this.missedPokemons.push(newMissed);
-    this.catchPokemon();
+    this.missPokemon();
     this.emitMissedPokemons();
   }
 
@@ -119,15 +119,6 @@ export class PokemonsService {
       )
     }
     this.emitPokemonsLocation();
-  }
-
-  launchPokeball() {
-    let random = Math.random();
-    if (random < 0.50) {
-      alert("Yes ! I got him !");
-    } else {
-      alert("Oh damn ! He escaped !");
-    }
   }
 
 }

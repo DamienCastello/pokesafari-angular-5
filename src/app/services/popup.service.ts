@@ -13,7 +13,7 @@ export class PopupService {
     pokemonsLocation: number[][] = [];
     pokemonsLocationSubscription: Subscription;
 
-    constructor(private pokemonsService: PokemonsService) {
+    constructor() {
 
     }
 
@@ -21,7 +21,9 @@ export class PopupService {
         return `` +
         `<div>name: ${ data[index].name }</div>` +
         `<img src="${ data[index].sprites.front_default }" alt="pokemon ${index}">` +
-        `<button onclick=${this.pokemonsService.launchPokeball()}>catch !</button>`
+        `<button class="try-catch">
+        <img src="../../assets/pokeball.png" alt="pokeball-icon" width="30px" height="30px" >
+        </button>`
         
     }
 
